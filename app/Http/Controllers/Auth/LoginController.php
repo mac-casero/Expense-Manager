@@ -54,29 +54,14 @@ class LoginController extends Controller
 
         $email = $request->email;
         $password = $request->password;
-        // Checkbox value is only present when checked
-        $remember = !empty($request->remember);
         $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        if(Auth::attempt([$fieldType => $email, 'password' => $password], $remember)){
-            //format access and put to cache
-            // $accesses = Auth::user()->roles_unique()->with('accesses')->get();
-            // $access_list = [];
-            // foreach($accesses as $access){
-            //     $list[$access->type] = [];
-            //     foreach($access->accesses as $acc){
-            //         $list[$access->type][$acc->name] = $acc->pivot->can_access;
-            //     }
-            //     $access_list = array_merge($access_list, $list);
-            // }
-            //     $access_list = array_merge($access_list, $list);
-
-            // Cache::put('access'.Auth::user()->id, $access_list);
-            return redirect()->intended('/');
+        if(Auth::attempt([$fieldType => $email, 'password' => $password])){
+            return redirect()->intended('/home');
         }
         else{
             return redirect()->route('login')
-                ->withErrors(['login', 'Username or password is incorrect.']);
+            ->withErrors(['email', 'Username or password is incorrect.']);
         }
     }
 }

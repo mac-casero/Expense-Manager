@@ -89,10 +89,20 @@ class expenseCategory {
         .then(function (response) {
             $("#update-category-modal").modal('hide');
             $('.alert-success').css('display','block');
+            $('.alert-success').fadeOut(2000);
             expense_category.loadDatatable();
         });
     }
 
+    async confirmDeleteCategory(){
+        $("#update-category-modal").modal('hide');
+        $("#delete-category-confirmation").modal('show');
+    }
+
+    async closeDeleteCategory(){
+        $("#update-category-modal").modal('show');
+        $("#delete-category-confirmation").modal('hide');
+    }
     async submitDeleteCategory(){
         const expense_category = this;
         const id = $("#category_id_update").val();

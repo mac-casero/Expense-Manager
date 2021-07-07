@@ -10244,6 +10244,15 @@ a[data-toggle=collapse] {
   margin-top: 20px;
 }
 
+#account-details {
+  text-align: center;
+  padding-top: 30px;
+}
+
+#account-name-display {
+  font-size: 18px;
+}
+
 /*
  * Table styles
  */

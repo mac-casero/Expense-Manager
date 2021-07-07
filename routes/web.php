@@ -15,46 +15,46 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->intended('/home');
 });
 
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'expense-management/'], function(){
-    Route::get('/expense-category',[App\Http\Controllers\ExpenseCategoryController::class, 'index']);
-    Route::get('/expenses',[App\Http\Controllers\ExpenseController::class, 'index']);
+    Route::get('/expense-category','ExpenseCategoryController@index');
+    Route::get('/expenses','ExpenseController@index');
 });
 
 Route::group(['prefix' => 'user-management/'], function(){
-    Route::get('/roles',[App\Http\Controllers\AccountController::class, 'displayRolesPage']);
-    Route::get('/users',[App\Http\Controllers\AccountController::class, 'displayUsersPage']);
+    Route::get('/roles','AccountController@displayRolesPage');
+    Route::get('/users','AccountController@displayUsersPage');
 });
 
-Route::get('/expense-list',[App\Http\Controllers\ExpenseController::class, 'viewExpenseList']);
-Route::get('/expense-category-list',[App\Http\Controllers\ExpenseCategoryController::class, 'viewExpenseCategoryList']);
-Route::get('/user-list',[App\Http\Controllers\AccountController::class, 'viewUserList']);
-Route::get('/role-list',[App\Http\Controllers\AccountController::class, 'viewRoleList']);
-Route::get('/pie-chart-data',[App\Http\Controllers\DashboardController::class, 'getExpensePieChartData']);
-Route::get('/expense-total-per-category',[App\Http\Controllers\DashboardController::class, 'expenseTotalPerCategoryList']);
+Route::get('/expense-list','ExpenseController@viewExpenseList');
+Route::get('/expense-category-list','ExpenseCategoryController@viewExpenseCategoryList');
+Route::get('/user-list','AccountController@viewUserList');
+Route::get('/role-list','AccountController@viewRoleList');
+Route::get('/pie-chart-data','DashboardController@getExpensePieChartData');
+Route::get('/expense-total-per-category','DashboardController@expenseTotalPerCategoryList');
 
-Route::get('/expense-item/{id}',[App\Http\Controllers\ExpenseController::class, 'getExpenseItem']);
-Route::post('/expense-item/create',[App\Http\Controllers\ExpenseController::class, 'createExpenseItem']);
-Route::post('/expense-item/update/{id}',[App\Http\Controllers\ExpenseController::class, 'updateExpenseItem']);
-Route::post('/expense-item/delete/{id}',[App\Http\Controllers\ExpenseController::class, 'deleteExpenseItem']);
+Route::get('/expense-item/{id}','ExpenseController@getExpenseItem');
+Route::post('/expense-item/create','ExpenseController@createExpenseItem');
+Route::post('/expense-item/update/{id}','ExpenseController@updateExpenseItem');
+Route::post('/expense-item/delete/{id}','ExpenseController@deleteExpenseItem');
 
-Route::get('/category-item/{id}',[App\Http\Controllers\ExpenseCategoryController::class, 'getRoleItem']);
-Route::post('/category-item/create',[App\Http\Controllers\ExpenseCategoryController::class, 'createCategoryItem']);
-Route::post('/category-item/update/{id}',[App\Http\Controllers\ExpenseCategoryController::class, 'updateCategoryItem']);
-Route::post('/category-item/delete/{id}',[App\Http\Controllers\ExpenseCategoryController::class, 'deleteCategoryItem']);
+Route::get('/category-item/{id}','ExpenseCategoryController@getCategoryItem');
+Route::post('/category-item/create','ExpenseCategoryController@createCategoryItem');
+Route::post('/category-item/update/{id}','ExpenseCategoryController@updateCategoryItem');
+Route::post('/category-item/delete/{id}','ExpenseCategoryController@deleteCategoryItem');
 
-Route::get('/role/{id}',[App\Http\Controllers\AccountController::class, 'getRoleItem']);
-Route::post('/role/create',[App\Http\Controllers\AccountController::class, 'createRoleItem']);
-Route::post('/role/update/{id}',[App\Http\Controllers\AccountController::class, 'updateRoleItem']);
-Route::post('/role/delete/{id}',[App\Http\Controllers\AccountController::class, 'deleteRoleItem']);
+Route::get('/role/{id}','AccountController@getRoleItem');
+Route::post('/role/create','AccountController@createRoleItem');
+Route::post('/role/update/{id}','AccountController@updateRoleItem');
+Route::post('/role/delete/{id}','AccountController@deleteRoleItem');
 
-Route::get('/user/{id}',[App\Http\Controllers\AccountController::class, 'getUserItem']);
-Route::post('/user/create',[App\Http\Controllers\AccountController::class, 'createUserItem']);
-Route::post('/user/update/{id}',[App\Http\Controllers\AccountController::class, 'updateUserItem']);
-Route::post('/user/delete/{id}',[App\Http\Controllers\AccountController::class, 'deleteUserItem']);
+Route::get('/user/{id}','AccountController@getUserItem');
+Route::post('/user/create','AccountController@createUserItem');
+Route::post('/user/update/{id}','AccountController@updateUserItem');
+Route::post('/user/delete/{id}','AccountController@deleteUserItem');

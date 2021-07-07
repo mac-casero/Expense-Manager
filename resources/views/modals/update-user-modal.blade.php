@@ -1,5 +1,5 @@
 <div class="modal fade" id="update-user-modal" role="dialog" aria-hidden="true" style="display:none">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -31,6 +31,22 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">@lang('Close')</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="update-admin-user-error-modal" role="dialog" aria-hidden="true" style="display:none">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">@lang('Update Administrator User')</h4>
+      </div>
+        <div class="modal-body">
+        @lang('Administrator users cannot be updated.')
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">@lang('Close')</button>
+        </div>
     </div>
   </div>
 </div>

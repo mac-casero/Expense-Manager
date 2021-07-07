@@ -32,7 +32,6 @@ class Roles {
 
         $('.dataTable').on('click', 'tbody tr', async function() {
             await roles.displayEditModal(this.id);
-           $("#update-role-modal").modal('show');
         })
     }
     
@@ -55,9 +54,14 @@ class Roles {
     async displayEditModal(id){
         await ServiceCall.getRoleItem(id)
         .then(response => {
-            $("#name_update").val(response.data.name);
-            $("#role_id_update").val(response.data.id);
-            $("#description_update").val(response.data.description);
+            if(response.data.name === 'Administrator'){
+                $("#update-admin-role-error-modal").modal('show');
+            }else{
+                $("#name_update").val(response.data.name);
+                $("#role_id_update").val(response.data.id);
+                $("#description_update").val(response.data.description);
+                $("#update-role-modal").modal('show');
+            }
         });
     }
 
@@ -87,8 +91,19 @@ class Roles {
         .then(function (response) {
             $("#update-role-modal").modal('hide');
             $('.alert-success').css('display','block');
+            $('.alert-success').fadeOut(2000);
             roles.loadDatatable();
         });
+    }
+
+    async confirmDeleteRole(){
+        $("#update-role-modal").modal('hide');
+        $("#delete-role-confirmation").modal('show');
+    }
+
+    async closeDeleteRole(){
+        $("#update-role-modal").modal('show');
+        $("#delete-role-confirmation").modal('hide');
     }
 
     async submitDeleteRole(){

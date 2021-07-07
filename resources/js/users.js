@@ -42,7 +42,6 @@ class Users {
 
         $('.dataTable').on('click', 'tbody tr', async function() {
             await users.displayEditModal(this.id);
-           $("#update-user-modal").modal('show');
         })
     }
 
@@ -87,10 +86,15 @@ class Users {
         })
         await ServiceCall.getUserItem(id)
         .then(response => {
-            $('#role_update option[value='+response.data.role_id+']').attr('selected','selected');
-            $("#name_update").val(response.data.name);
-            $("#email_update").val(response.data.email);
-            $("#user_id_update").val(response.data.id);
+            if(response.data.role_id === 1){    //administrator role id
+                $("#update-admin-user-error-modal").modal('show');
+            }else{
+                $('#role_update option[value='+response.data.role_id+']').attr('selected','selected');
+                $("#name_update").val(response.data.name);
+                $("#email_update").val(response.data.email);
+                $("#user_id_update").val(response.data.id);
+                $("#update-user-modal").modal('show');
+            }
         });
     }
 
@@ -124,6 +128,7 @@ class Users {
         .then(function (response) {
             $("#update-user-modal").modal('hide');
             $('.alert-success').css('display','block');
+            $('.alert-success').fadeOut(2000);
             users.loadDatatable();
         });
     }

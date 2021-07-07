@@ -19,7 +19,11 @@
     <div class="wrapper d-flex align-items-stretch">
         @auth
 		<nav id="sidebar">
-			<div class="p-4 pt-5">
+            <div id="account-details">
+                <div id="account-name-display">{{Auth::user()->name}}</div>
+                <div id="account-role-display">({{Auth::user()->roles()->first()->name}})</div>
+            </div>
+			<div class="p-4">
                 <ul class="list-unstyled components mb-5">
                     @permission('Dashboard')
                     <li>

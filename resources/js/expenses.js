@@ -131,6 +131,7 @@ class Expenses {
         .then(function (response) {
             $("#update-expense-modal").modal('hide');
             $('.alert-success').css('display','block');
+            $('.alert-success').fadeOut(2000);
             expenses.loadDatatable();
         });
     }

@@ -80,6 +80,11 @@ class AccountController extends Controller
 
     public function deleteRoleItem(Request $request){
         $role = Role::find($request->id) ?? abort(400);
+        $roleUsers = User::join('users_roles','users_roles.user_id','=','users.id')
+        ->where('users_roles.role_id',$role->id)->get();
+        foreach($roleUsers as $user){
+            $user->delete();
+        }
         $role->delete();
 
         return response()->json('Deleted Role Successfully', 200);
@@ -109,7 +114,9 @@ class AccountController extends Controller
             'name' => $request->name,
             'email' => $request->email
         ];
-        $user->sync($data);
+        $role = Role::find($request->role_id);
+        $user->update($data);
+        $user->roles()->sync($role);
         return $user;
     }
 

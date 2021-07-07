@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container" id="msform">
+  <div class="alert alert-success" style="display:none">
+    <strong>Success!</strong>
+  </div>
   <fieldset>
     <h2 class="fs-title">@lang('Users')</h2>
     <button id="add_user_btn" class="btn btn-primary btn-sm mb-3"  data-toggle="modal" onclick="users.displayCreateModal()" data-target="#create-user-modal" >@lang('Add User')</button>
