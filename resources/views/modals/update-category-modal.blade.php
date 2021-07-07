@@ -34,10 +34,10 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">@lang('Delete Expense Category')</h5>
+          <h5 class="modal-title">@lang('Delete Category')</h5>
         </div>
           <div class="modal-body">
-              @lang('Are you sure you want to delete this expense category? Expenses under this category will also be deleted.')
+              @lang('Are you sure you want to delete this category? Expenses under this category will also be deleted.')
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="expenseCategory.submitDeleteCategory()">@lang('Delete')</button>
